@@ -8,7 +8,7 @@ body{
 	margin: 0 auto;
 	padding: 0px;
 }
-#list{
+#messages{
 	list-style: none;
 }
 #main{
@@ -22,4 +22,15 @@ body{
 	margin-bottom: 10px;
 	width: 100%;
 	height: 60px;
+}
+#msg{
+	list-style: none;
+}
+ #messages li:nth-child(odd) { 
+ 	background: #eee; 
+ }
+#login{
+	background-color: blue;
+	width: 100%;
+	height: 100%;
 }
