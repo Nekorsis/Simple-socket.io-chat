@@ -1,3 +1,2 @@
 # Project2
-doing some weird stuff,
-coming soon
+basic socket.io chat for now, working on upgrages
