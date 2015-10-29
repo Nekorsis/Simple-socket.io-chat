@@ -1,3 +1,3 @@
 # Project2
-doing some weird stuff
+doing some weird stuff,
 coming soon
