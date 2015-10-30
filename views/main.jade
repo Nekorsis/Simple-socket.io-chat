@@ -13,9 +13,10 @@ html(lang='en')
 			.container#login
 				form#loginform
 					input#logininput(type= 'text' value= 'Nekorsis')
-					input(type= 'Submit')
+					input(type= 'Submit' value='Join')
 			.container#main
-				ul#messages
-			form#messageform(action= "" actiondisplay= 'hide')
-				input#m(type= 'text' autocomplete= 'off' )
-				input(type= 'submit')
+				div#messages
+			div#input
+				form#messageform(action= "" actiondisplay= 'hide')
+					textarea#m(placeholder= "Type your message here...")
+					input#send(type= 'submit' value= 'Send')

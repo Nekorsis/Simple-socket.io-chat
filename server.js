@@ -6,8 +6,10 @@ var port = process.env.PORT || 3000;
 app.set('view engine', 'jade');
 app.use(express.static('static'));
 
+
 http.listen(port, function (){
 });
+
 
 app.get('/', function (req, res){
 	res.render('main');

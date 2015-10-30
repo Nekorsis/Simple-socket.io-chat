@@ -9,28 +9,72 @@ body{
 	padding: 0px;
 }
 #messages{
-	list-style: none;
+	margin-top: 2%;
+	width: 100%;
+	height: 100%;
 }
 #main{
 	width: 100%;
 	height: 500px;
-	overflow: scroll;
-	background-color: #ffffff;
+	background-color: #272C30;
+	overflow-y: scroll;
 }
 #input{
-	margin-top: 20px;
-	margin-bottom: 10px;
+	margin-top: 2%;
 	width: 100%;
 	height: 60px;
 }
-#msg{
-	list-style: none;
-}
- #messages li:nth-child(odd) { 
- 	background: #eee; 
- }
 #login{
 	background-color: blue;
 	width: 100%;
 	height: 100%;
+}
+.my_msg{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 30%;
+	width: 70%;
+	word-wrap: break-word;
+	background-color: #00AEDB;
+	text-align: left;
+	padding-right: 3%;
+	padding-left: 3%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	border-radius: 10px;
+	color: #ffffff;
+}
+.user-status{
+	color: #ffffff;
+}
+.msg{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+	background-color: #586166;
+	width: 70%;
+	margin-right: 30%;
+	padding-left: 3%;
+	padding-right: 3%;
+	padding-left: 3%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	border-radius: 10px;
+	color: #ffffff;
+	word-wrap: break-word;
+}
+.user-status{
+	margin-left: 3%;
+	color: rgba(255, 255, 255, 0.6);
+}
+#m{
+	margin-left: 20%;
+	resize: vertical;
+	max-height: 160px;
+	width: 500px;
+	height: 80px;
+}
+#send{
+	margin-left: 45%;
+	display: block;
 }
