@@ -24,11 +24,22 @@ body{
 	width: 100%;
 	height: 60px;
 }
-#login{
-	background-color: blue;
-	width: 100%;
-	height: 100%;
+#loginform{
+	padding-top: 20%;
+	padding-left: 32%;
 }
+#loginform p{
+	margin-left: 15%;
+	color:  #ffffff;
+}
+#logininput{
+	width: 300px;
+}
+.button{
+	width: 80px;
+	margin-left: 1%;
+}
+
 .my_msg{
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -77,4 +88,11 @@ body{
 #send{
 	margin-left: 45%;
 	display: block;
+}
+.overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	background-color: rgba(34, 34, 34, 0.9);
 }

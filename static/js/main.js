@@ -1,6 +1,5 @@
 var socket = io();
 var name;
-
 $(function(){
 	$('#messageform').hide();
 });
@@ -35,15 +34,18 @@ socket.on('user joined', function (username){
 });
 
 socket.on('user left', function (username){
-	$('#messages').append($('<div class="user-status"></div>').text(getTime() + ' ' + ' left chat'));
+	$('#messages').append($('<div class="user-status"></div>').text(getTime() + ' ' + username + ' left chat'));
 });
 
+socket.on('username overlap', function (username){
+	alert('username already in use');
+});
 
 $(function(){
 	$('#loginform').submit(function(){
 		name = $('#logininput').val();
 		socket.emit('add user', name);
-		$('#loginform').hide();
+		$('.overlay').slideUp("fast");
 		$('#messageform').show();
 		$('#main').css('margin-top', '1%');
 		return false;

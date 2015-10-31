@@ -10,13 +10,16 @@ html(lang='en')
 		script(type='text/javascript' src ="js/main.js")
 	body
 		.wrapper#wrapper
-			.container#login
-				form#loginform
-					input#logininput(type= 'text' value= 'Nekorsis')
-					input(type= 'Submit' value='Join')
 			.container#main
 				div#messages
 			div#input
 				form#messageform(action= "" actiondisplay= 'hide')
 					textarea#m(placeholder= "Type your message here...")
 					input#send(type= 'submit' value= 'Send')
+		div.overlay
+			.container#login
+				form#loginform
+					p
+						| Enter you name
+					input#logininput(type= 'text' value= 'Nekorsis')
+					input.button(type= 'Submit' value='Join')
