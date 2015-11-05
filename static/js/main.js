@@ -3,12 +3,17 @@ var name;
 $(function(){
 	$('#messageform').hide();
 });
+
 $(document).ready(function (){
 	$('#messageform').submit(function(){
-		var tempstr = $('#m').val();
-    	socket.emit('send_msg', tempstr);
-    $('#m').val('');
-    return false;
+		var message_string = $('#m').val();
+		if (!message_string){
+			return false;
+		} else {
+				socket.emit('send_msg', message_string);
+    			$('#m').val('');
+    			return false;
+		};    
   });
 });
 
@@ -21,13 +26,14 @@ function getTime(){
 };
 
 socket.on('message', function (data){
-	if ( data.username === name ){
-		$('#messages').append($('<div class="my_msg"></div>').text(data.message));
+	if ( data.username === name ){	
+			$('#messages').append($('<div class="my_msg"></div>').text(data.message));
 	}
 	else {
 		$('#messages').append($('<div class="msg"></div>').text(getTime() + ' ' + data.username +  ': ' + data.message));
 	};
 });
+
 
 socket.on('user joined', function (username){
 	$('#messages').append($('<div class="user-status"></div>').text(getTime() + ' ' + username + ' joined chat'));
@@ -44,11 +50,15 @@ socket.on('username overlap', function (username){
 $(function(){
 	$('#loginform').submit(function(){
 		name = $('#logininput').val();
-		socket.emit('add user', name);
-		$('.overlay').slideUp("fast");
-		$('#messageform').show();
-		$('#main').css('margin-top', '1%');
-		return false;
+		if (!name){
+			return false;
+		} else {
+			socket.emit('add user', name);
+			$('.overlay').fadeOut('slow');
+			$('#messageform').show();
+			$('#main').css('margin-top', '1%');
+			return false;
+		};
 	});
 });
 	

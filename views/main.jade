@@ -3,7 +3,7 @@ html(lang='en')
 	head
 		title= "Projetct II"
 		meta(charset= 'utf-8')
-		link(rel="stylesheet" href ="css/bootstrap.css")
+		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous")
 		link(rel="stylesheet" href ="css/main.css")
 		script(type='text/javascript' src ="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
 		script(type='text/javascript' src ="https://cdn.socket.io/socket.io-1.2.0.js")
@@ -15,11 +15,10 @@ html(lang='en')
 			div#input
 				form#messageform(action= "" actiondisplay= 'hide')
 					textarea#m(placeholder= "Type your message here...")
-					input#send(type= 'submit' value= 'Send')
+					input#send(name= "send" type= 'Submit' value= 'Send')
 		div.overlay
 			.container#login
 				form#loginform
-					p
-						| Enter you name
-					input#logininput(type= 'text' value= 'Nekorsis')
+					h2 Enter your name
+					input#logininput(type= 'text' placeholder= "Enter your name ...")
 					input.button(type= 'Submit' value='Join')

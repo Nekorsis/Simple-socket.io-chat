@@ -3,12 +3,15 @@ var express = require('express');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
+
 app.set('view engine', 'jade');
 app.use(express.static('static'));
+
 
 var usernames = {};
 
 http.listen(port, function (){
+	console.log('Server is up and running')
 });
 
 
@@ -27,7 +30,6 @@ io.on('connection', function (socket){
 			addedUser = true;
 			socket.username = username;
 			usernames[username] = username;
-			console.log(usernames);
 			io.sockets.emit('user joined', socket.username);
 	});
 
@@ -35,8 +37,7 @@ io.on('connection', function (socket){
 		io.sockets.emit('user left', socket.username);
 		if (addedUser){
 			delete usernames[socket.username];
-		};
-		console.log(usernames);		
+		};	
 	});
 });
 
