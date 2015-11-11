@@ -1,24 +1,29 @@
 doctype
-html(lang='en')
+html(lang="en")
 	head
 		title= "Projetct II"
-		meta(charset= 'utf-8')
+		meta(charset= "utf-8")
 		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous")
 		link(rel="stylesheet" href ="css/main.css")
-		script(type='text/javascript' src ="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
-		script(type='text/javascript' src ="https://cdn.socket.io/socket.io-1.2.0.js")
-		script(type='text/javascript' src ="js/main.js")
+		script(type="text/javascript" src ="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+		script(type="text/javascript" src ="https://cdn.socket.io/socket.io-1.2.0.js")
+		script(type="text/javascript" src ="js/main.js")
+		script(type="text/javascript" src ="js/linkify.min.js")
+		script(type="text/javascript" src ="js/linkify-jquery.min.js")
 	body
 		.wrapper#wrapper
+			div#userlist
+				h4= "Users online: "
+				ul
 			.container#main
 				div#messages
-			div#input
-				form#messageform(action= "" actiondisplay= 'hide')
-					textarea#m(placeholder= "Type your message here...")
-					input#send(name= "send" type= 'Submit' value= 'Send')
+				div#input
+					form#messageform(action= "" actiondisplay= "hide")
+						input#m(name= "send" placeholder= "Type your message here..." autocomplete= "off" maxlenhth = "150")
+						input#send(autocomplete= "off" name= "send" type= "Submit" value= "Send")
 		div.overlay
 			.container#login
 				form#loginform
 					h2 Enter your name
-					input#logininput(type= 'text' placeholder= "Enter your name ...")
-					input.button(type= 'Submit' value='Join')
+					input#logininput(type= "text" placeholder= "Enter your name ..." maxlength= "20")
+					input.button(type= "Submit" value="Join")

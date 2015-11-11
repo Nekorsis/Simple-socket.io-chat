@@ -1,3 +1,4 @@
+
 var socket = io();
 var name;
 $(function(){
@@ -17,20 +18,31 @@ $(document).ready(function (){
   });
 });
 
-
-
 function getTime(){
 	var d = new Date();
 	var time = d.getHours() + ":" + d.getMinutes();
 	return time;
 };
 
+function getLinks(){
+	$('p').linkify();
+	$('#sidebar').linkify({
+    target: "_blank"
+	});
+};
+
+
 socket.on('message', function (data){
-	if ( data.username === name ){	
-			$('#messages').append($('<div class="my_msg"></div>').text(data.message));
+	var scroll = 500;
+	if ( data.username === name ){
+			$('#messages').append($('<p class="my-msg"></p>').text(data.message));
+			$('#main').scrollTop(300);
+			getLinks();
 	}
 	else {
-		$('#messages').append($('<div class="msg"></div>').text(getTime() + ' ' + data.username +  ': ' + data.message));
+		$('#messages').append($('<p class="msg"></p>').text(getTime() + ' ' + data.username +  ': ' + data.message));
+		$('#main').scrollTop(300);
+		getLinks();
 	};
 });
 
@@ -39,7 +51,17 @@ socket.on('user joined', function (username){
 	$('#messages').append($('<div class="user-status"></div>').text(getTime() + ' ' + username + ' joined chat'));
 });
 
-socket.on('user left', function (username){
+socket.on('list', function (data){
+		$('#userlist ul').empty();
+		for (key1 in data) {
+			$.each( data[key1], function( key, value ) {
+  			$('#userlist ul').append($('<li>' + value.toString() + '</li>'));
+			});
+		};
+});
+
+
+socket.on('user left', function (username, data){
 	$('#messages').append($('<div class="user-status"></div>').text(getTime() + ' ' + username + ' left chat'));
 });
 

@@ -9,14 +9,13 @@ app.use(express.static('static'));
 
 
 var usernames = {};
-
 http.listen(port, function (){
 	console.log('Server is up and running')
 });
 
 
 app.get('/', function (req, res){
-	res.render('main');
+	res.render('main', {names: usernames});
 });
 
 io.on('connection', function (socket){
@@ -31,13 +30,18 @@ io.on('connection', function (socket){
 			socket.username = username;
 			usernames[username] = username;
 			io.sockets.emit('user joined', socket.username);
+			io.sockets.emit('list', {data: usernames});
 	});
-
+	
 	socket.on('disconnect', function(){
+		var test = usernames;
 		io.sockets.emit('user left', socket.username);
 		if (addedUser){
 			delete usernames[socket.username];
-		};	
+		};
+		io.sockets.emit('list', {data: usernames});
+		console.log(usernames);
 	});
+	
 });
 
