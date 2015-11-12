@@ -6,21 +6,23 @@ body{
 	margin: 0 auto;
 }
 #main{
+	word-wrap: break-word;
 	overflow-y: auto;
 	float: left;
 	width: 600px;
-	min-height: 480px;
-	max-height: 480px;
+	min-height: 550px;
+	max-height: 550px;
 	border: 1px solid rgba(225, 225, 225, 0.8);
 	margin-bottom: 2%;
 }
 #userlist{
 	width: 280px;
 	float: right;
+	max-width: 350px;
 }
 #input{
 	position: absolute;
-	top: 82%;
+	top: 90%;
 	display: inline-block;
 	clear: both;
 }
@@ -61,4 +63,7 @@ body{
 ul {
 	list-style: none;
 	padding: 2px;
+}
+.user-status{
+	margin-left: 33%;
 }

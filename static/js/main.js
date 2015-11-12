@@ -25,7 +25,7 @@ function getTime(){
 };
 
 function getLinks(){
-	$('p').linkify();
+	$('div').linkify();
 	$('#sidebar').linkify({
     target: "_blank"
 	});
@@ -35,13 +35,11 @@ function getLinks(){
 socket.on('message', function (data){
 	var scroll = 500;
 	if ( data.username === name ){
-			$('#messages').append($('<p class="my-msg"></p>').text(data.message));
-			$('#main').scrollTop(300);
+			$('#messages').append($('<div class="my-msg"></div>').text(data.message));
 			getLinks();
 	}
 	else {
-		$('#messages').append($('<p class="msg"></p>').text(getTime() + ' ' + data.username +  ': ' + data.message));
-		$('#main').scrollTop(300);
+		$('#messages').append($('<div class="msg"></div>').text(getTime() + ' ' + data.username +  ': ' + data.message));
 		getLinks();
 	};
 });
