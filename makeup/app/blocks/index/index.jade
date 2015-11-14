@@ -1,2 +1,10 @@
+include ../threads/threads
+include ../content/content
+include ../header/header
+include ../messages/messages
+
 mixin index()
-	div index
+	+threads
+	+content
+		+header()
+		+messages()
