@@ -1,8 +1,20 @@
 [
 	{
 		"avatar": "http://placehold.it/50x50",
-		"name": "name",
+		"name": "Alexey",
 		"lastMessage": "last message",
 		"unreadCounter": 2
+	},
+	{
+		"avatar": "http://placehold.it/50x50",
+		"name": "Max",
+		"lastMessage": "How are you?",
+		"unreadCounter": 0
+	},
+	{
+		"avatar": "http://placehold.it/50x50",
+		"name": "Ibram",
+		"lastMessage": "Very looooooooong message.\nIt is really very very looooong.\nIt has a lot of words, sentances and symbols.",
+		"unreadCounter": 0
 	}
 ]
