@@ -3,9 +3,7 @@ include ../title/title
 include ../text/text
 
 mixin thread(data)
-	.thread
-		if data.unreadCounter
-			.thread__mark
+	.thread(class={thread__state_unread: data.unreadCounter})
 		.thread__name= data.name
 		+avatar.thread__avatar(src=data.avatar)
 		+title.thread__title= data.name
