@@ -1,4 +1,10 @@
+include ../avatar/avatar
+include ../title/title
+include ../text/text
 
 mixin header()
 	header.header
-		| header
+		+avatar.header__avatar
+		.header__info
+			+title.header__title Conversation with Pamfil Stavarache
+			+text.header__text Tapdaq Ltd. - tapdaq.com
