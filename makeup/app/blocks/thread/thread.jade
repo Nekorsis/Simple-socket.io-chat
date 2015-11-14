@@ -1,0 +1,13 @@
+include ../avatar/avatar
+include ../title/title
+include ../text/text
+
+mixin thread(data)
+	.thread
+		if data.unreadCounter
+			.thread__mark
+		.thread__name= data.name
+		+avatar.thread__avatar(src=data.avatar)
+		+title.thread__title= data.name
+		+text.thread__text= data.lastMessage
+		.thread_counter= data.unreadCounter
