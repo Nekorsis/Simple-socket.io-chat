@@ -1,21 +1,21 @@
 [
 	{
-		"avatar": "http://placehold.it/50x50",
-		"name": "Alexey",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg",
+		"name": "Andrey",
 		"lastMessage": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, esse.",
 		"unreadCounter": 2,
 		"date": "May 1"
 	},
 	{
-		"avatar": "http://placehold.it/50x50",
-		"name": "Max",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ritu/128.jpg",
+		"name": "Mihail",
 		"lastMessage": "How are you?",
 		"unreadCounter": 14,
 		"date": "April 24"
 	},
 	{
-		"avatar": "http://placehold.it/50x50",
-		"name": "Ibram",
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mantia/128.jpg",
+		"name": "Danil",
 		"lastMessage": "Very looooooooong message.\nIt is really very very looooong.\nIt has a lot of words, sentances and symbols.",
 		"unreadCounter": 0,
 		"date": "April 25"
