@@ -3,10 +3,11 @@ include ../title/title
 include ../text/text
 
 mixin thread(data)
-	.thread(class={thread__state_unread: data.unreadCounter})
-		.thread__name= data.name
+	.thread(class={thread_state_unread: data.unreadCounter})
 		+avatar.thread__avatar(src=data.avatar)
-		+title.thread__title= data.name
-		+text.thread__text= data.lastMessage
-		.thread__date= data.date
-		.thread_counter= data.unreadCounter
+		.thread__info
+			+title.thread__name= data.name
+			+text.thread__text= data.lastMessage
+			.thread__date= data.date
+			if data.unreadCounter
+				.thread__counter= data.unreadCounter
