@@ -3,5 +3,6 @@ include ../thread/thread
 mixin threads()
 	- threads = getData('threads')
 	.threads
-		each thread in threads
-			+thread(thread)
+		.threads__scroll
+			each thread in threads
+				+thread(thread)

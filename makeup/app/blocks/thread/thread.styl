@@ -4,11 +4,25 @@ right-offset = 25px
 	display flex
 	height 110px
 	border-top separator
+	border-right separator
 	cursor pointer
+
+	&_state_current
+		border-right none
+		background-image linear-gradient(to right, alpha(c-blue, .05), white 70%)
+
+		&::before
+			content ''
+			margin-top -1px
+			width 3px
+			height calc(100% + 2px)
+			background-color c-blue
+
 
 	&_state_unread
 		display flex
 		position relative
+
 		&::before
 			content ''
 			position absolute
