@@ -8,6 +8,7 @@ right-offset = 25px
 	cursor pointer
 
 	&_state_current
+		pointer-events none
 		border-right none
 		background-image linear-gradient(to right, alpha(c-blue, .05), white 70%)
 
@@ -22,6 +23,12 @@ right-offset = 25px
 	&_state_unread
 		display flex
 		position relative
+
+		&:hover
+			background-color alpha(c-light-gray, .2)
+
+		&:active
+			background-color alpha(c-light-gray, .4)
 
 		&::before
 			content ''
