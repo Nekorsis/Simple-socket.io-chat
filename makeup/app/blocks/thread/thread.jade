@@ -10,4 +10,5 @@ mixin thread(data)
 		+avatar.thread__avatar(src=data.avatar)
 		+title.thread__title= data.name
 		+text.thread__text= data.lastMessage
+		.thread__date= data.date
 		.thread_counter= data.unreadCounter
