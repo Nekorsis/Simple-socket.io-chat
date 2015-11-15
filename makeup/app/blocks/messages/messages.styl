@@ -3,7 +3,5 @@
 	border-top separator
 
 	&__scroll
-		// height 'calc(100% - %s)' % header-height
-		// max-height 'calc(100vh - %s)' % header-height
-		max-height 'calc(100vh - %s)' % (main-offset * 2 + header-height)
+		max-height 'calc(100vh - %s)' % (main-offset * 2 + header-height + composer-height)
 		overflow-y scroll

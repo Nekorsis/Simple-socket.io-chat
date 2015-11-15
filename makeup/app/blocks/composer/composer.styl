@@ -1,0 +1,31 @@
+.composer
+	height composer-height
+	display flex
+	border-top separator
+
+	&__textarea
+		margin-right 10px
+		margin-left @margin-right
+		padding 5px
+		height 50px
+		width 100%
+		align-self center
+		border separator
+		border-radius 3px
+		color #546074
+
+	&__button
+		position absolute
+		right 5px
+		bottom @right
+		padding 1px 5px
+		font-size 1.2em
+		color c-blue
+		background-color c-white
+		border separator
+		border-radius 7px
+
+		&:hover
+			color darken(c-blue, 10)
+		&:active
+			color darken(c-blue, 20)
