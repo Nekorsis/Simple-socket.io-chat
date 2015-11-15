@@ -5,6 +5,7 @@ mixin message(data)
 	.message
 		.message__avatar
 			+avatar(src=data.avatar)
-		.message__name= data.name
-		.message__time= data.time
-		+text.message__text= data.text
+		.message__content
+			.message__name= data.name
+			.message__time= data.time
+			+text.message__text= data.text

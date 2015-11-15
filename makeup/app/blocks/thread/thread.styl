@@ -7,6 +7,12 @@ right-offset = 25px
 	border-right separator
 	cursor pointer
 
+	&:hover
+		background-color alpha(c-light-gray, .2)
+
+	&:active
+		background-color alpha(c-light-gray, .4)
+
 	&_state_current
 		pointer-events none
 		border-right none
@@ -23,12 +29,6 @@ right-offset = 25px
 	&_state_unread
 		display flex
 		position relative
-
-		&:hover
-			background-color alpha(c-light-gray, .2)
-
-		&:active
-			background-color alpha(c-light-gray, .4)
 
 		&::before
 			content ''
@@ -95,6 +95,7 @@ right-offset = 25px
 		padding 5px
 		display block
 		min-width 21px
+		font-family Arial, sans-serif
 		font-size 11px
 		text-align center
 		font-weight 600
