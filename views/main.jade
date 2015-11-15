@@ -1,7 +1,7 @@
 doctype
 html(lang="en")
 	head
-		title= "Projetct II"
+		title= "Socket.io chat"
 		meta(charset= "utf-8")
 		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous")
 		link(rel="stylesheet" href ="css/main.css")
@@ -18,13 +18,15 @@ html(lang="en")
 				ul
 			.container#main
 				div#messages
+					div.lol
 				div#input
 					form#messageform(action= "" actiondisplay= "hide")
 						input#m(name= "send" placeholder= "Type your message here..." autocomplete= "off" maxlenhth = "150")
-						input#send(autocomplete= "off" name= "send" type= "Submit" value= "Send")
+						input#send(name= "btn" type= "Submit" value= "Send" )
 		div.overlay
 			.container#login
 				form#loginform
 					h2 Enter your name
+					p.sup
 					input#logininput(type= "text" placeholder= "Enter your name ..." maxlength= "20")
 					input.button(type= "Submit" value="Join")

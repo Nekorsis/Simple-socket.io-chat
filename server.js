@@ -18,6 +18,23 @@ app.get('/', function (req, res){
 	res.render('main', {names: usernames});
 });
 
+function validate (name, object){
+	var some = [];
+	some = Object.keys(object);
+	for ( i = 0; i < some.length; i++){
+		if (some[i] === name) {
+			console.log('validate false');
+			console.log(some[i]);
+			return false;
+		};
+	};
+	return true;
+};
+
+
+
+
+
 io.on('connection', function (socket){
 	var addedUser = false;
 	socket.on('send_msg', function (msg){
@@ -26,22 +43,32 @@ io.on('connection', function (socket){
 	});
 
 	socket.on('add user', function (username){
-			addedUser = true;
-			socket.username = username;
-			usernames[username] = username;
-			io.sockets.emit('user joined', socket.username);
-			io.sockets.emit('list', {data: usernames});
+		var temp = username;
+		if (!validate(username, usernames)){
+			io.sockets.emit('overlap', temp);
+			io.sockets.emit('userlist', {data: usernames});
+			return;
+		};
+		addedUser = true;
+		socket.username = temp;
+		usernames[temp] = temp;
+		io.sockets.emit('user joined', socket.username);
+		io.sockets.emit('userlist', {data: usernames});
+		console.log(usernames);
 	});
 	
 	socket.on('disconnect', function(){
-		var test = usernames;
 		io.sockets.emit('user left', socket.username);
 		if (addedUser){
 			delete usernames[socket.username];
 		};
-		io.sockets.emit('list', {data: usernames});
-		console.log(usernames);
+		io.sockets.emit('userlist', {data: usernames});
+		//console.log(usernames);
 	});
-	
+
+		socket.on('thoughtsteal', function (str){
+		io.sockets.emit('tracking', {string: str, name: socket.username});
+		console.log(str, socket.username);
+	});	
 });
 
