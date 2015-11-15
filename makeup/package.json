@@ -14,7 +14,8 @@
   "scripts": {
     "start": "gulp --debug",
     "build": "gulp build",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "pages": "git checkout gh-pages; git reset --hard master; npm run build; git add -f dist; git commit --allow-empty-message -m ''; git push origin +gh-pages; git checkout master"
   },
   "repository": {
     "type": "git",

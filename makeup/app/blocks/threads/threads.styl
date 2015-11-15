@@ -1,0 +1,17 @@
+.threads
+	position absolute
+	width threads-width
+	background-color c-white
+
+	&__scroll
+		max-height 'calc(100vh - %s)' % (main-offset * 2)
+		overflow-y scroll
+
+	&::after
+		content ''
+		position absolute
+		right 0
+		width 100%
+		height 100vh
+		background-color c-white
+		border-right separator

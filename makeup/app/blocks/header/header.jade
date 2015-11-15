@@ -1,16 +1,10 @@
-include ../logo/logo
-include ../dark/dark
+include ../avatar/avatar
 include ../title/title
-include ../description/description
+include ../text/text
 
 mixin header()
-	.header
-		+logo()
-
-		.header__title
-			+dark()
-				+title()
-					| CSSSR Project Template
-
-		+description()
-			| Шаблон проекта для быстрого старта.
+	header.header
+		+avatar.header__avatar(src='https://s3.amazonaws.com/uifaces/faces/twitter/_everaldo/128.jpg')
+		.header__info
+			+title.header__title Conversation with Pamfil Stavarache
+			+text.header__text Tapdaq Ltd. - tapdaq.com

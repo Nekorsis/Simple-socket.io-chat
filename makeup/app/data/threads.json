@@ -1,0 +1,31 @@
+[
+	{
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg",
+		"name": "Andrey",
+		"lastMessage": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, esse.",
+		"unreadCounter": 2,
+		"date": "May 1"
+	},
+	{
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ritu/128.jpg",
+		"name": "Mihail",
+		"lastMessage": "How are you?",
+		"unreadCounter": 14,
+		"date": "April 24"
+	},
+	{
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mantia/128.jpg",
+		"name": "Danil",
+		"lastMessage": "Very looooooooong message.\nIt is really very very looooong.\nIt has a lot of words, sentances and symbols.",
+		"unreadCounter": 0,
+		"date": "April 25",
+		"current": true
+	},
+	{
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/guiiipontes/128.jpg",
+		"name": "John",
+		"lastMessage": "Hello",
+		"unreadCounter": 0,
+		"date": "April 2"
+	}
+]

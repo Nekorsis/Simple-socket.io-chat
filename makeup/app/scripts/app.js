@@ -1,6 +1,4 @@
-import svg4everybody from 'svg4everybody';
-import $ from 'jquery';
+import GeminiScrollbar from 'gemini-scrollbar'
 
-$(() => {
-	svg4everybody();
-});
+new GeminiScrollbar({element: document.querySelector('.js-threads-scroll')}).create()
+new GeminiScrollbar({element: document.querySelector('.js-messages-scroll')}).create()

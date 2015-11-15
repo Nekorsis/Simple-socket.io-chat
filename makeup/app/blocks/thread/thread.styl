@@ -1,0 +1,106 @@
+right-offset = 25px
+
+.thread
+	display flex
+	height 110px
+	border-top separator
+	border-right separator
+	cursor pointer
+
+	&:hover
+		background-color alpha(c-light-gray, .2)
+
+	&:active
+		background-color alpha(c-light-gray, .4)
+
+	&_state_current
+		pointer-events none
+		border-right none
+		background-image linear-gradient(to right, alpha(c-blue, .05), transparent 70%)
+
+		&::before
+			content ''
+			margin-top -1px
+			width 3px
+			height calc(100% + 2px)
+			background-color c-blue
+
+
+	&_state_unread
+		display flex
+		position relative
+
+		&::before
+			content ''
+			position absolute
+			top calc(50% - 5px)
+			left 10px
+			height 10px
+			width 10px
+			background-color c-blue
+			border-radius 50%
+
+	&:first-child
+		border-top none
+
+	&:last-child
+		border-bottom separator
+
+	&__avatar
+		align-self center
+		margin-left 30px
+
+	&__info
+		position relative
+		padding-top 25px
+		padding-left 20px
+		width 100%
+		flex 1
+
+	&__name
+		top 25px
+		font-weight 600
+
+	&_state_unread &__name
+		color c-blue !important
+
+	&__text
+		margin-top 8px
+
+		lines-to-show = 2
+		font-size 13px
+		line-height 1.5
+		max-width 200px
+
+		display block /* Fallback for non-webkit */
+		display -webkit-box
+		overflow hidden
+
+		height @font-size * @line-height * lines-to-show /* Fallback for non-webkit */
+
+		text-overflow ellipsis
+		-webkit-line-clamp lines-to-show
+		-webkit-box-orient vertical
+
+	&__date
+		position absolute
+		right right-offset
+		top 25px
+		color c-gray
+
+	&__counter
+		position absolute
+		top 60px
+		right right-offset
+		padding 5px
+		display block
+		min-width 21px
+		font-family Arial, sans-serif
+		font-size 11px
+		text-align center
+		font-weight 600
+		color white
+		background-color c-orange
+		border-radius 20px
+
+
