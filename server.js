@@ -63,12 +63,10 @@ io.on('connection', function (socket){
 			delete usernames[socket.username];
 		};
 		io.sockets.emit('userlist', {data: usernames});
-		//console.log(usernames);
 	});
 
 		socket.on('thoughtsteal', function (str){
 		io.sockets.emit('tracking', {string: str, name: socket.username});
-		console.log(str, socket.username);
 	});	
 });
 
