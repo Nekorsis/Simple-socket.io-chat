@@ -3,6 +3,6 @@ include ../thread/thread
 mixin threads()
 	- threads = getData('threads')
 	.threads
-		.threads__scroll
+		.threads__scroll.js-threads-scroll
 			each thread in threads
 				+thread(thread)

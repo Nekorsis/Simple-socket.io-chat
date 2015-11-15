@@ -1,8 +1,12 @@
 .main
-	margin-left auto
-	margin-right auto
+	position fixed
+	left 50%
 	display flex
 	width 1024px
-	height 100vh
+	margin-top main-offset
+	margin-left (@width / -2)
+	height 'calc(100vh - %s)' % (@margin-top * 2)
 	background-color c-white
+	border-radius 10px
 	box-shadow 0 0 50px alpha(c-dark, .2)
+	overflow hidden
