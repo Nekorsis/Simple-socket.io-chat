@@ -1,3 +1,8 @@
+include ../message/message
+
 mixin messages()
+	- messages = getData('messages')
 	.messages
 		.messages__scroll.js-messages-scroll
+			each message in messages
+				+message(message)

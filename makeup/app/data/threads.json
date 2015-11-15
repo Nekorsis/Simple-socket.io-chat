@@ -20,5 +20,12 @@
 		"unreadCounter": 0,
 		"date": "April 25",
 		"current": true
+	},
+	{
+		"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/guiiipontes/128.jpg",
+		"name": "John",
+		"lastMessage": "Hello",
+		"unreadCounter": 0,
+		"date": "April 2"
 	}
 ]
