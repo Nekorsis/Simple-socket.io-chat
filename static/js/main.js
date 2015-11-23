@@ -63,9 +63,9 @@ socket.on('user left', function (username, data){
 socket.on('overlap', function (username){
 });
 
-
+/*
 var indicate = false;
-
+ // useless piece of shit
 $(function(){
 	$('#m').on('keyup', function (e){
 		var str = $('#m').val();
@@ -88,7 +88,7 @@ socket.on('tracking', function (data){
 	$('.lol').text(data.name + ": " + data.string);
 });
 
-
+*/ 
 
 
 $(function(){
