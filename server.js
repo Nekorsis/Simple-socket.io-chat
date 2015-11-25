@@ -23,20 +23,16 @@ function validate (name, object){
 	some = Object.keys(object);
 	for ( i = 0; i < some.length; i++){
 		if (some[i] === name) {
-			console.log('validate false');
-			console.log(some[i]);
 			return false;
 		};
 	};
 	return true;
 };
 
-
-
-
-
 io.on('connection', function (socket){
 	var addedUser = false;
+	var id = socket.id;
+	console.log(id);
 	socket.on('send_msg', function (msg){
 		io.sockets.emit('message', {message: msg,
 			username: socket.username});
@@ -45,8 +41,9 @@ io.on('connection', function (socket){
 	socket.on('add user', function (username){
 		var temp = username;
 		if (!validate(username, usernames)){
-			io.sockets.emit('overlap', temp);
+			io.sockets.connected[socket.id].emit('overlap', temp);
 			io.sockets.emit('userlist', {data: usernames});
+			console.log('overlap happend');
 			return;
 		};
 		addedUser = true;
@@ -54,7 +51,7 @@ io.on('connection', function (socket){
 		usernames[temp] = temp;
 		io.sockets.emit('user joined', socket.username);
 		io.sockets.emit('userlist', {data: usernames});
-		console.log(usernames);
+		console.log('username added');
 	});
 	
 	socket.on('disconnect', function(){
