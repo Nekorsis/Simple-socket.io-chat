@@ -31,8 +31,6 @@ function validate (name, object){
 
 io.on('connection', function (socket){
 	var addedUser = false;
-	var id = socket.id;
-	console.log(id);
 	socket.on('send_msg', function (msg){
 		io.sockets.emit('message', {message: msg,
 			username: socket.username});
