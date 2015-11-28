@@ -3,9 +3,13 @@ var express = require('express');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
+var getData = require('./gulp/utils/getData');
 
 app.set('view engine', 'jade');
+app.set('views', 'views/pages');
 app.use(express.static('static'));
+
+app.locals.getData = getData;
 
 
 var usernames = {};
@@ -16,7 +20,7 @@ http.listen(port, function (){
 
 
 app.get('/', function (req, res){
-	res.render('main');
+	res.render('index');
 });
 
 io.on('connection', function (socket){
@@ -37,7 +41,7 @@ io.on('connection', function (socket){
 		io.sockets.emit('user left', socket.username);
 		if (addedUser){
 			delete usernames[socket.username];
-		};	
+		};
 	});
 });
 
