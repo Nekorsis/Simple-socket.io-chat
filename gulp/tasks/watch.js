@@ -15,10 +15,7 @@ gulp.task('watch', () => {
 		() => reload('assets/styles/app.min.css')
 	));
 
-	watch('views/{pages,blocks}/**/*.jade', () => runSequence(
-		// 'templates',
-		reload
-	));
+	watch('views/{pages,blocks}/**/*.jade', reload);
 
 	watch('views/resources/**/*', () => runSequence(
 		'copy',
