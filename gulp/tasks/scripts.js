@@ -10,7 +10,7 @@ import paths from '../paths';
 
 gulp.task('scripts', () => (
 	browserify({debug: gutil.env.debug})
-		.transform(babelify.configure({sourceMaps: 'inline'}))
+		.transform(babelify)
 		.require('views/scripts/app.js', {entry: true})
 		.bundle()
 		.on('error', err => console.log('Error: ' + err.message))
