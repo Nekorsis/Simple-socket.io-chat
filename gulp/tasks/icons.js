@@ -12,10 +12,10 @@ gulp.task('icons', () => (
 			className: '%f',
 			templates: [
 				path.join(__dirname, '../utils/svg.styl'),
-				'default-svg'
-			]
+				'default-svg',
+			],
 		}))
 		.pipe(gulpif(/\.styl$/, gulp.dest('views/styles/helpers')))
 		.pipe(gulpif(/\.svg$/, rename('icon.svg')))
-		.pipe(gulpif(/\.svg$/, gulp.dest('dist/assets/images/')))
+		.pipe(gulpif(/\.svg$/, gulp.dest('static/assets/images/')))
 ));

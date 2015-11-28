@@ -1,0 +1,16 @@
+font-url(file)
+	return '/assets/fonts/' + file
+
+webfont(family, file, weight = normal)
+	@font-face
+		font-family family
+		file += '/' + file
+		src url(font-url(file + '.eot')),
+				url(font-url(file + '.woff')) format('woff'),
+				url(font-url(file + '.ttf')) format('truetype')
+		font-weight weight
+		font-style normal
+
+webfont('Proxima Nova', 'ProximaNova-Light', 200)
+webfont('Proxima Nova', 'ProximaNova-Regular', 400)
+webfont('Proxima Nova', 'ProximaNova-Semibold', 600)
