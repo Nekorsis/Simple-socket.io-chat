@@ -16,7 +16,7 @@ gulp.task('watch', () => {
 	));
 
 	watch('views/{pages,blocks}/**/*.jade', () => runSequence(
-		'templates',
+		// 'templates',
 		reload
 	));
 
