@@ -4,11 +4,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 5000;
 var getData = require('./gulp/utils/getData');
+var initMessages = require('./views/data/messages.json');
+var initThreads = require('./views/data/threads.json');
 
 app.set('view engine', 'jade');
 app.set('views', 'views/pages');
 app.use(express.static('static'));
-app.locals.getData = getData;
 
 
 var usernames = {};
@@ -19,7 +20,11 @@ http.listen(port, function (){
 
 
 app.get('/', function (req, res){
-	res.render('index');
+	// TODO: send initial data here
+	res.render('index', {
+		messages: initMessages,
+		threads: initThreads
+	});
 });
 
 io.on('connection', function (socket){

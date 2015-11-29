@@ -1,48 +1,17 @@
-import $ from 'jquery';
-import io from 'socket.io-client';
-
 import GeminiScrollbar from 'gemini-scrollbar';
+import io from 'socket.io-client';
+import Cookie from 'js-cookie';
+import $ from 'jquery';
 
-new GeminiScrollbar({element: document.querySelector('.js-threads-scroll')}).create();
-new GeminiScrollbar({element: document.querySelector('.js-messages-scroll')}).create();
+import renderMessageTemplate from '../blocks/message/template.jade';
+import renderThreadTemplate from '../blocks/thread/template.jade';
+
 
 const socket = io('localhost:5000');
-// let name;
-
-// $(() => {
-// 	$('#messageform').hide();
-// });
-
-// $(() => {
-// 	$('#messageform').submit(() => {
-// 		const messageString = $('#m').val();
-// 		if (!messageString) return false;
-// 		socket.emit('send_msg', messageString);
-// 		$('#m').val('');
-// 		return false;
-// 	});
-// });
-
-
-$(() => {
-	const jsComposer = $('.js-composer');
-	jsComposer.submit(e => {
-		e.preventDefault();
-		const messageString = e.target.message.value;
-		if (!messageString) return;
-		socket.emit('send_msg', messageString);
-		e.target.message.value = '';
-	});
-
-	jsComposer.keydown(e => {
-		if (e.ctrlKey && e.keyCode === 13) {
-			e.preventDefault();
-			jsComposer.submit();
-		}
-	});
-
-});
-
+const userinfo = {
+	name: null,
+	avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg',
+};
 
 function getTime() {
 	const d = new Date();
@@ -50,59 +19,108 @@ function getTime() {
 	return time;
 }
 
-function renderMessageTemplate({avatar, name, time, text}) {
-	return `
-		<div class="message">
-			<div class="message__avatar">
-				<avatar src="${avatar}"></avatar>
-			</div>
-			<div class="message__content">
-				<div class="message__name">"${name}"</div>
-				<div class="message__time">"${time}"</div>
-				<text class="message__text">"${text}"</text>
-			</div>
-		</div>
-	`;
-}
+const isMe = name => name === userinfo.name;
+
+$(() => {
+	const $messagesContainer = $('.js-messages-container');
+	const $threadsContainer = $('.js-threads-container');
+	const $messagesScroll = $('.js-messages-scroll');
+	const $threadsScroll = $('.js-threads-scroll');
+	const $loginOverlay = $('.js-login-overlay');
+	const $loginForm = $('.js-login-form');
+	const $composer = $('.js-composer');
+
+	new GeminiScrollbar({element: $threadsScroll}).create();
+	new GeminiScrollbar({element: $messagesScroll}).create();
 
 
 
-// socket.on('message', data => {
-// 	if (data.username === name) {
-// 		$('#messages').append($('<div class="my_msg"></div>').text(data.message));
-// 	} else {
-// 		$('#messages').append($('<div class="msg"></div>').text(`${getTime()} ${data.username}: ${data.message}`));
-// 	}
-// });
+	// LOGIN
 
-socket.on('message', data => {
-	$('.js-messages-container').append(renderMessageTemplate({
-		text: data.message,
-		time: getTime(),
-	}));
+	function login(username) {
+		userinfo.name = username;
+		socket.emit('add user', userinfo.name);
+		Cookie.set('username', userinfo.name);
+		$loginOverlay.hide();
+	}
+
+	const usernameFromCookies = Cookie.get('username');
+	if (usernameFromCookies) {
+		login(usernameFromCookies);
+	}
+
+	$loginForm.submit(e => {
+		e.preventDefault();
+		login(e.target.username.value);
+		$loginOverlay.fadeOut('slow');
+	});
+
+	socket.on('username overlap', username => {
+		alert(`username ${username} already in use`); // eslint-disable-line no-alert
+	});
+
+
+
+	// MAIN
+
+	function scrollToBottom(animate = true) {
+		$messagesScroll.animate({scrollTop: $messagesContainer.height()}, !animate && 0);
+	}
+	scrollToBottom(false);
+
+
+
+	// NEW MESSAGE
+
+	$composer.submit(e => {
+		e.preventDefault();
+		const message = e.target.message.value.trim();
+		if (!message) return;
+		socket.emit('send_msg', message);
+		e.target.message.value = '';
+	});
+
+	$composer.keydown(e => {
+		if ((e.metaKey || e.ctrlKey) && e.keyCode === 13) {
+			e.preventDefault();
+			$composer.submit();
+		}
+	});
+
+	socket.on('message', data => {
+		$messagesContainer.append(renderMessageTemplate({
+			avatar: userinfo.avatar, // TODO: data.avatar here
+			text: data.message,
+			time: getTime(),
+			name: data.username,
+		}));
+		if (!isMe(data.username)) {
+			$threadsContainer
+				.find(`#name_${data.username}`)
+				.find('.thread__text')
+				.text(data.message);
+		}
+		scrollToBottom();
+	});
+
+
+
+	// USER JOIN/LEFT
+
+	socket.on('user joined', username => {
+		if (isMe(username)) return;
+		$messagesContainer.append($('<div class="user-status"></div>').text(`${getTime()} ${username} joined chat`));
+		$threadsContainer.append(renderThreadTemplate({
+			avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/_everaldo/128.jpg',
+			name: username,
+		}));
+		scrollToBottom();
+	});
+
+	socket.on('user left', username => {
+		$messagesContainer.append($('<div class="user-status"></div>').text(`${getTime()} ${username} left chat`));
+		$threadsContainer.find(`#name_${username}`).remove();
+		scrollToBottom();
+	});
+
 });
-
-
-// socket.on('user joined', username => {
-// 	$('#messages').append($('<div class="user-status"></div>').text(`${getTime()} ${username} joined chat`));
-// });
-
-// socket.on('user left', username => {
-// 	$('#messages').append($('<div class="user-status"></div>').text(`${getTime()} ${username} left chat`));
-// });
-
-// socket.on('username overlap', username => {
-// 	alert(`username ${username} already in use`); // eslint-disable-line no-alert
-// });
-
-// $(() => {
-// 	$('#loginform').submit(() => {
-// 		name = $('#logininput').val();
-// 		if (!name) return false;
-// 		socket.emit('add user', name);
-// 		$('.overlay').fadeOut('slow');
-// 		$('#messageform').show();
-// 		$('#main').css('margin-top', '1%');
-// 		return false;
-// 	});
-// });

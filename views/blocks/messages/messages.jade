@@ -2,9 +2,9 @@ include ../message/message
 include ../composer/composer
 
 mixin messages()
-	- messages = getData('messages')
 	.messages
-		.messages__scroll.js-messages-scroll.js-messages-container
-			each message in messages
-				+message(message)
+		.messages__scroll.js-messages-scroll
+			.js-messages-container
+				each message in messages
+					+message(message)
 		+composer()

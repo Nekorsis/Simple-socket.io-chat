@@ -3,7 +3,7 @@ include ../title/title
 include ../text/text
 
 mixin thread(data)
-	.thread(class={
+	.thread(id='name_' + data.name class={
 		thread_state_unread: data.unreadCounter,
 		thread_state_current: data.current,
 	})

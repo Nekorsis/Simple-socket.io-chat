@@ -9,5 +9,6 @@ gulp.task('server', () => (
 		reloadOnRestart: true,
 		port: gutil.env.port || 3000,
 		tunnel: !!gutil.env.tunnel,
+		ghostMode: false,
 	})
 ));
