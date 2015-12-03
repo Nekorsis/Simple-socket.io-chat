@@ -70,7 +70,7 @@
     "gulp-util": "^3.0.2",
     "gulp-watch": "^4.3.5",
     "gulp-zip": "^3.0.0",
-    "gulp.spritesmith": "^4.0.0",
+    "gulp.spritesmith": "4.2.0",
     "jquery": "^2.1.4",
     "merge-stream": "^1.0.0",
     "pngsmith": "^0.1.3",

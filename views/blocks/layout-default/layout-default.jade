@@ -1,0 +1,11 @@
+include ../login-overlay/login-overlay
+include ../main/main
+
+doctype html
+html(lang='ru')
+	include ../head/head
+	body
+		+login-overlay
+		+main()
+			block content
+	script(src='assets/scripts/app.min.js')

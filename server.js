@@ -2,9 +2,13 @@ var app = require ('express')();
 var express = require('express');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
+var getData = require('./gulp/utils/getData');
+var initMessages = require('./views/data/messages.json');
+var initThreads = require('./views/data/threads.json');
 
 app.set('view engine', 'jade');
+app.set('views', 'views/pages');
 app.use(express.static('static'));
 
 
@@ -16,7 +20,11 @@ http.listen(port, function (){
 
 
 app.get('/', function (req, res){
-	res.render('main');
+	// TODO: send initial data here
+	res.render('index', {
+		messages: initMessages,
+		threads: initThreads
+	});
 });
 
 io.on('connection', function (socket){
@@ -27,17 +35,17 @@ io.on('connection', function (socket){
 	});
 
 	socket.on('add user', function (username){
-			addedUser = true;
-			socket.username = username;
-			usernames[username] = username;
-			io.sockets.emit('user joined', socket.username);
+		addedUser = true;
+		socket.username = username;
+		usernames[username] = username;
+		io.sockets.emit('user joined', socket.username);
 	});
 
 	socket.on('disconnect', function(){
 		io.sockets.emit('user left', socket.username);
 		if (addedUser){
 			delete usernames[socket.username];
-		};	
+		};
 	});
 });
 

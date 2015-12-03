@@ -1,0 +1,8 @@
+include ../thread/thread
+
+mixin threads()
+	.threads
+		.threads__scroll.js-threads-scroll
+			.js-threads-container
+				each thread in threads
+					+thread(thread)
