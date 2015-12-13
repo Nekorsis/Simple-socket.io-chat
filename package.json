@@ -4,6 +4,8 @@
   "description": "Second attempt",
   "main": "server.js",
   "scripts": {
+    "server": "babel-node server.js",
+    "start": "gulp --debug",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pages": "cd makeup; npm run pages"
   },
@@ -11,6 +13,7 @@
   "license": "BSD",
   "devDependencies": {
     "autoprefixer-stylus": "^0.8.0",
+    "babel": "^5.8.34",
     "babel-core": "^5.8.3",
     "babel-eslint": "^4.0.5",
     "babelify": "^6.1.3",
