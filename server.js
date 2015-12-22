@@ -10,7 +10,6 @@ app.use(express.static('static'));
 
 var usernames = {};
 http.listen(port, function (){
-	console.log('Server is up and running')
 });
 
 
@@ -21,13 +20,13 @@ app.get('/', function (req, res){
 function validate (name, object){
 	var some = [];
 	some = Object.keys(object);
-	for ( i = 0; i < some.length; i++){
+	for (var i = 0; i < some.length; i++){
 		if (some[i] === name) {
 			return false;
-		};
-	};
+		}
+	}
 	return true;
-};
+}
 
 io.on('connection', function (socket){
 	var addedUser = false;
@@ -41,27 +40,21 @@ io.on('connection', function (socket){
 		if (!validate(username, usernames)){
 			io.sockets.connected[socket.id].emit('overlap', temp);
 			io.sockets.emit('userlist', {data: usernames});
-			console.log('overlap happend');
 			return;
-		};
+		}
 		addedUser = true;
 		socket.username = temp;
 		usernames[temp] = temp;
 		io.sockets.emit('user joined', socket.username);
 		io.sockets.emit('userlist', {data: usernames});
-		console.log('username added');
 	});
 	
 	socket.on('disconnect', function(){
 		io.sockets.emit('user left', socket.username);
 		if (addedUser){
 			delete usernames[socket.username];
-		};
+		}
 		io.sockets.emit('userlist', {data: usernames});
 	});
-
-		socket.on('thoughtsteal', function (str){
-		io.sockets.emit('tracking', {string: str, name: socket.username});
-	});	
 });
 
